@@ -1,0 +1,39 @@
+<div class="row border border-left-0 border-right-0 border-top-0 p-2">
+  <div class="col">
+    <h4 *ngIf="wishList">Whish List ( {{wishList.length|number}} )</h4>
+    <h4 *ngIf="!wishList">Whish List ( 0 )</h4>
+  </div>
+</div>
+<ng-template #list>
+  <div class="row mb-2">
+    <div class="col-sm-12 col-md-4" *ngFor="let item of wishList">
+      <div class="card text-center  mt-3 w-75 shadow-sm">
+        <img [src]="item.image[0]" class="card-img-top align-self-center" alt="">
+        <div class="card-img-overlay d-flex justify-content-end">
+          <a class="card-link text-secondary remove-icon" data-toggle="tooltip" title="Remove">
+            <i class="fas fa-trash-alt" (click)="removeItem(item['_id'])"></i>
+          </a>
+        </div>
+        <div class="card-body ">
+          <h6 class="card-title">{{item.name}}</h6>
+          <span class="price-was price dis">EGY {{item.price - (item.price * item.discount/100)}}</span>
+          <h4 class="card-text">{{item.price}}</h4>
+          <app-rating [value]="item.rating" ></app-rating>
+          <p class="card-text text-success">{{item.discount}}</p>
+          <button class="btn bg-dark w-100 ">Add To Cart
+            <i class="fas fa-shopping-cart"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-template>
+<ng-template #alert>
+  <div class="row p-5 d-flex justify-content-center align-items-center">
+    <div class="alert  alert-light" role="alert">
+      You are not add any product <a routerLink="/" class="alert-link">Back To Home</a>
+      and add to your list.
+    </div>
+  </div>
+</ng-template>
+<ng-container *ngIf="wishList then list; else alert"></ng-container>

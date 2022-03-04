@@ -1,0 +1,85 @@
+.container-fluid
+{
+   color:white;
+}
+.firstRow{
+  background-color: #37475A;
+    display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  p{
+    margin-bottom: 0;
+  }
+}
+.secondRow{
+  background-color: #232F3E;
+    padding:20px 0px 50px 0px;
+
+    .columns{
+        display: flex;
+        flex-flow: column;
+
+   }
+   a:hover{
+     text-decoration: underline;
+   }
+}
+a{
+  cursor: pointer;
+  font-size: 0.8rem;
+  color: rgb(247, 241, 241);
+}
+.thirdRow
+{
+  background-color: #232F3E;
+  padding:20px 0px 20px 0px;
+  margin-top: 1px;
+  .col-sm-12{
+    display: flex;
+   justify-content: center;
+   align-items: center;
+   margin: 10px 0px 20px 0px;
+  }
+  button{
+    background-color: transparent;
+    color: rgb(247, 241, 241);
+    border: 1px solid ;
+    outline-color: white;
+    border-radius: 10%;
+    font-weight:0.2;
+    // padding:1px 3px 1px 1px;
+  }
+  img{
+    margin-right: 10px;
+  }
+}
+
+
+.fourthRow
+{
+  background-color: rgb(15, 24, 27);
+  .col-sm{
+    a{
+      font-size: 0.6rem;
+    }
+  }
+}
+.lastRow{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-flow: row;
+  margin: 30px 0px 30px 0px;
+
+  a{
+    margin-right: 15px;
+    font-size: 0.7rem;
+  }
+  p{
+    position: relative;
+    top:7px;
+    font-size: 0.7rem;
+
+  }
+}

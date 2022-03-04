@@ -1,0 +1,20 @@
+<!-- <p-carousel [value]="categories" styleClass="custom-carousel" [numVisible]="3" [numScroll]="1"  [responsiveOptions]="responsiveOptions"> -->
+<p-carousel [value]="categories" styleClass="custom-carousel"  [circular]="true"
+  [autoplayInterval]="3000" [responsiveOptions]="responsiveOptions">
+  <ng-template pTemplate="header">
+    <!-- <h5>Circular, AutoPlay, 3 Items per Page and Scroll by 1</h5> -->
+  </ng-template>
+  <ng-template let-cate pTemplate="item">
+    <div class="product-item">
+      <div class="product-item-content ">
+        <div class="mb-3">
+          <img [src]="cate.icon" [alt]="cate.label" class="product-image"/>
+        </div>
+        <div>
+          <h4 class="p-mb-1">{{cate.labele}}</h4>
+          <span>{{cate.label}}</span>
+        </div>
+      </div>
+    </div>
+  </ng-template>
+</p-carousel>

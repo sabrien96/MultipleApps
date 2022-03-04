@@ -1,0 +1,43 @@
+<!-- <button (click)="addToCart()">Add To Cart</button> -->
+<div class="row border border-left-0 border-right-0 border-top-0 mb-3 p-2">
+  <div class="col">
+    <h4>Carts List ({{cartsList.length}})</h4>
+  </div>
+</div>
+
+<ng-template #cartList>
+  <div class="row  mb-2">
+    <div class="card col-sm-12 col-md-8" *ngFor="let item of cartsList">
+      <div class="card-body row">
+        <div class="col-sm-4">
+          <img [src]="item.image[0]" class="w-50" onerror="this.onerror=null; this.src='../../../../assets/img/5.jpg'"
+            alt="product Img">
+        </div>
+        <div class="col-sm-6">
+          <p class="card-title">{{item.name}}
+          <p class="card-text">Price:{{item.price}}EGP</p>
+          <div class="btn-group btn-group-lg shadow-sm">
+            <button type="button" class="btn" [disabled]="qty===1" [class]="qty===1?'btn-light':''"
+              (click)="counterForQty('-')">
+              <strong>-</strong>
+            </button>
+            <button type="button" class="btn">{{qty}}</button>
+            <button type="button" class="btn" [disabled]="qty===item.countInStock"
+              [class]="qty===item.countInStock?'btn-light':''" (click)="counterForQty('+')">
+              <strong>+</strong>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-template>
+<ng-template #alert>
+  <div class="row p-5 d-flex justify-content-center align-items-center">
+    <div class="alert  alert-light" role="alert">
+      Your cart is empty back to <a routerLink="/" class="alert-link">Home</a>.
+      OR to your <a routerLink="/user/wishlist" class="alert-link">Favourite List</a>.
+    </div>
+  </div>
+</ng-template>
+<ng-container *ngIf="cartsList.length!==0 then cartList; else alert"></ng-container>

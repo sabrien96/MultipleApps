@@ -1,0 +1,19 @@
+.wrapper{
+  min-height: 100vh;
+}
+div{
+  top: 0;
+}
+
+a {
+  color: #fff;
+  transition: 0.3;
+  cursor: pointer;
+  margin-left: 2rem;
+}
+a:hover {
+  color: rgb(233, 138, 71);
+}
+a:focus {
+  color: chocolate;
+}

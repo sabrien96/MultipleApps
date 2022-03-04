@@ -1,0 +1,17 @@
+<div class="card mt-3  shadow-sm" (click)="navigategTo()">
+  <img class="card-img-top " [src]="product.image[0]" alt="Card image cap">
+  <div class="card-img-overlay d-flex justify-content-end">
+    <a (click)="addToWishList()" class="card-link text-danger like">
+      <i class="fas fa-heart"></i>
+    </a>
+  </div>
+  <div class="card-body">
+    <div class="">
+      <h6 class="card-title">{{product.name|slice:0:50}}</h6>
+      <span class="price-was price dis">EGY {{product.price - (product.price * product.discount/100)}}</span>
+      <h4 class="card-text">EGY {{product.price}}</h4>
+      <app-rating [value]="product.rating" ></app-rating>
+      <p class="card-text text-success">{{product.discount|percent}}</p>
+    </div>
+  </div>
+</div>

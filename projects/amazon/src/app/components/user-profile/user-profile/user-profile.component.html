@@ -1,0 +1,49 @@
+<div class="container-fluid">
+  <div class="row wrapper">
+    <nav id="mySidenav" class="nav d-fixed col-sm-3 col-md-2 border border-left-0 bg-dark ">
+  
+      <ul class="navbar-nav">
+        <li class="nav-item ">
+          <div class="text-center">
+            <h3 class="title">Amazon</h3>
+          </div>
+        </li>
+        <li class="nav-item">
+          <a routerLink="/user/info" class="nav-link">
+            <i class="far fa-user"></i> Your Profile</a>
+        </li>
+        <li class="nav-item">
+          <a routerLink="/user/carts" class="nav-link">
+            <i class="fas fa-shopping-cart  icon"></i>
+            Cart</a>
+        </li>
+        <li class="nav-item">
+          <a routerLink="/user/wishlist" class="nav-link">
+            <i class="fas fa-heart"></i> Whish List</a>
+        </li>
+  
+        <li class="nav-item">
+          <a routerLink="/user/orders" class="nav-link">
+            <i class="fas fa-shopping-cart"></i> Orders</a>
+        </li>
+        <li class="nav-item">
+          <a routerLink="/user/orders" class="nav-link">
+            <i class="fas fa-home"></i> Addresses</a>
+        </li>
+        <li class="nav-item">
+          <a routerLink="/user" class="nav-link">
+            <i class="fas fa-phone"></i> Contact Us</a>
+        </li>
+      </ul>
+    </nav>
+  
+    <div id="content" class="col-sm-9 col-md-10">
+      <!-- <div class="container-fluid  mt-2" [@routingFade]="outletRef.isActivated?outletRef.activatedRoute:''"> -->
+      <div class="container-fluid  mt-2" >
+        <router-outlet #outletRef="outlet"></router-outlet>
+      </div>
+    </div>
+  
+  </div>
+</div>
+

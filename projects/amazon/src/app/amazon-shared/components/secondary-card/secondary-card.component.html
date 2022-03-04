@@ -1,0 +1,18 @@
+<div class="card p-2">
+  <a class="product-link" (click)="navigateTo()" >
+    <img class="card-img-top ml-5 mr-5" [src]="product.image[0]" alt="Card image cap">
+    <div class="product-body">
+      <p class="brand" style="color: #929292;font-size: 14px;">{{ product.brand|uppercase }} , {{ product.name }} ,
+        {{product.description|slice:0:10}} </p>
+      <div class="my-3">
+        <app-rating [value]="product.rating" ></app-rating>
+      </div>
+      <div class="discount">
+        <div class="product-price dis"> {{ product.price }}</div>
+      </div>
+      <b>
+        <span class="price-was price">EGY {{product.price - (product.price * product.discount/100)}}</span>
+      </b>
+    </div>
+  </a>
+</div>

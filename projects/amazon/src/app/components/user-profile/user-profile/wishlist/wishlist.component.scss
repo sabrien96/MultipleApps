@@ -1,0 +1,22 @@
+.btn {
+  color: chocolate;
+  cursor: pointer;
+  border: none; 
+  outline: none;
+  &:hover{
+    color: white;
+  }
+}
+
+
+.card-img-top {
+  height: 10rem;
+  width: 5rem;
+}
+.remove-icon > i:hover {
+  cursor: pointer;
+  color: red;
+}
+.alert-link {
+  color: #007bff;
+}

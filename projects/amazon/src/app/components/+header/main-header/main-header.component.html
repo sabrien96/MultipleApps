@@ -1,0 +1,117 @@
+<div class="container-fluid">
+
+  <header>
+    <div class="row head align-items-center">
+      <div class="col-md-7 col-lg-8 ">
+        <div class="row  no-gutters left-container align-items-center">
+          <div class="col-md-2 logo col-3">
+            <a class="navbar-brand" routerLink="/">
+              <img src="../../../../assets/icons/logo_black.jpg" alt="amazon" style="width: 80%; height: 100%" />
+            </a>
+          </div>
+          <!-- search input -->
+          <div class="col-md-10 col-9 search-container">
+            <form class=" row form-group ">
+              <!-- <button type="menu" class="col-sm-2 col-1 menu-btn">All </button> -->
+              <button class="dropdown col-sm-2 col-md-1 menu-btn">
+                <a class=" dropdown-toggle item " id="dropdownMenu1" data-toggle="dropdown">
+                  All
+                </a>
+                <ul class="dropdown-menu dropdown-content">
+                  <option><a class="dropdown-item">Category 1 </a></option>
+                  <option><a class="dropdown-item">Category 2 </a></option>
+                  <option><a class="dropdown-item">Category 3 </a></option>
+                </ul>
+              </button>
+              <input type="text" class="form-control col-sm-8 col-md-10" (focus)="addOverlay()" #search
+                placeholder="what are you looking for?" />
+              <button type="submit" class="col-sm-2 col-md-1 search-btn"><i class="fas fa-search"></i></button>
+            </form>
+          </div>
+        </div>
+      </div>
+      <!-- dropdown menus -->
+      <div class="col-md-5 col-lg-4 ">
+        <div class="row no-gutters align-items-center">
+          <!-- language menu -->
+          <div class="col d-flex justify-content-center">
+            <span class="dropdown d-flex justify-content-center">
+              <a class=" dropdown-toggle item  " id="dropdownMenu1" data-toggle="dropdown">
+                <!-- Language -->
+                <img src="../../../../assets/icons/egypt.png" style="width:60% ; height:100%; " alt="">
+              </a>
+              <ul class="dropdown-menu dropdown-content">
+                <li><a class="dropdown-item">UAE</a></li>
+                <li><a class="dropdown-item">KSA</a></li>
+                <li><a class="dropdown-item">EGYPT</a></li>
+              </ul>
+            </span>
+          </div>
+          <div class="col d-flex justify-content-center">
+            <span class="dropdown">
+              <ng-template #login>
+                <a class="dropdown-toggle item" data-toggle="dropdown" href="#">
+                  {{username}} <i class="far fa-user"></i>
+                </a>
+              </ng-template>
+              <ng-template #notLogin>
+                <a class="dropdown-toggle item" data-toggle="dropdown" href="#">
+                  Hello,Sign in <i class="far fa-user"></i>
+                </a>
+              </ng-template>
+
+              <ng-container *ngIf="username then login; else notLogin"></ng-container>
+
+              <div class="dropdown-menu dropdown-content">
+                <div class="menu_btn_container">
+                  <ng-template #signin>
+                    <button (click)="navigateToForm(1)">Sign In</button>
+                    <p>New Customer? <a (click)="navigateToForm(2)">Start here</a></p>
+                  </ng-template>
+
+                  <ng-template #logout>
+                    <button>Logout</button>
+                  </ng-template>
+                  <ng-container *ngIf="username then logout; else signin"></ng-container>
+
+                  <hr>
+                  <div class="container">
+                    <div class="row">
+                      <div class="col-6">
+                        <b>Your Lists</b>
+                        <a href="">Create List</a>
+                      </div>
+                      <div class="col-6">
+                        <b>Your Account</b>
+                        <a (click)="navigateToUser('info')">Your Account</a>
+                        <a (click)="navigateToUser('orders')">Your Orders</a>
+                        <a (click)="navigateToUser('address')">Your Addresses</a>
+                        <a (click)="navigateToUser('wishlist')">Your Lists</a>
+                        <a>Your Recommendations</a>
+                        <a>Your Seller Account</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </span>
+          </div>
+
+          <div class="col order d-flex justify-content-center">
+            <a class="item" (click)="navigateToUser('orders')">Orders</a>
+          </div>
+
+          <!-- cart -->
+          <div class="col d-flex justify-content-center">
+            <div class="cart">
+              <button class="cart-icon" (click)="navigateToUser('carts')">
+                <div class="cart-count"><span>{{cartCounter}}</span></div>
+                <i class="fas fa-shopping-cart  icon"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+</div>

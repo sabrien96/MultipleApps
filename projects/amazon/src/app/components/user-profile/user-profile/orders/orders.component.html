@@ -1,0 +1,37 @@
+<div class="row border border-left-0 border-right-0 border-top-0 p-2">
+  <div class="col">
+    <h4>Orders List ({{this.orderList.length}})</h4>
+  </div>
+</div>
+<ng-template #orders>
+  <div class="table-responsive-sm">
+    <table class="table table-hover text-center table-striped">
+      <thead class="bg-dark text-light">
+        <tr>
+          <th scope="col">Order Num</th>
+          <th scope="col">Total Price</th>
+          <th scope="col">Payment Method</th>
+          <th scope="col">Order Status</th>       
+        </tr>
+      </thead>
+      <tbody>
+          <tr *ngFor="let order of orderList ;let i=index">
+            <td>{{i+1}}</td>
+            <td>{{order.totalPrice}}</td>
+            <td>{{order.paymentMethod|titlecase}}</td>
+            <td>{{order.orderStatus|titlecase}}</td>
+      </tbody>
+    </table>
+  </div>
+</ng-template>
+<ng-template #alert>
+  <div class="row p-5 d-flex justify-content-center align-items-center">
+    <div class="alert  alert-light" role="alert">
+      You are not make any order back to <a routerLink="/" class="alert-link">Home</a>.
+      OR to your <a routerLink="/user/cart" class="alert-link">Carts</a>.
+    </div>
+  </div>
+</ng-template>
+<ng-container *ngIf="orderList.length!==0 then orders; else alert"></ng-container>
+
+

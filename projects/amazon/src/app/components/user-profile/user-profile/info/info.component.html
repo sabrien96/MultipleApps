@@ -1,0 +1,38 @@
+<div class="row p-5">
+  <div class="col-sm-2">
+    <!-- <img  src="https://img.icons8.com/color/48/000000/administrator-male.png" alt="userImg"  class="rounded-circle mx-auto d-block"> -->
+    <img src="../../../../assets/img/4.jpg" onerror="this.onerror=null; this.src='../../../../assets/img/5.jpg'"
+      alt="userImg"  class="rounded-circle w-100 d-block">
+  </div>
+  <div class="col-sm-9 ">
+    <div class="card p-4  bg-white">
+      <form class="form-group" #userForm="ngForm">
+        <!-- {{userData|json}} -->
+        <div class="row">
+          <div class="col-sm-6">
+            <div class="form-group">
+              <label>First Name:</label>
+              <input type="text" name="firstname" [(ngModel)]="userData.firstName" class="form-control" readonly>
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="form-group">
+              <label>Last Name:</label>
+              <input type="text" name="lastname" [(ngModel)]="userData.lastName" class="form-control" readonly>
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Email:</label>
+          <input type="email" name="email" [(ngModel)]="userData.email" class="form-control" readonly>
+        </div>
+
+        <!-- <div class="form-group">
+          <label>Phone Number:</label>
+          <input type="tel" name="phone" [(ngModel)]="userData." class="form-control" readonly>
+        </div> -->
+
+      </form>
+    </div>
+  </div>
+</div>
