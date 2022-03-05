@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { CategoryService } from './../../../../../../shared/services/category.service';
+import { Component, Input, OnInit } from '@angular/core';
+import { IProduct } from '../../../../../../shared/models/product';
 
 @Component({
   selector: 'app-products-list',
@@ -6,10 +8,18 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./products-list.component.scss']
 })
 export class ProductsListComponent implements OnInit {
-
-  constructor() { }
-
-  ngOnInit(): void {
+  @Input() subcategoryName: string = '';
+  productsList: IProduct[];
+  constructor(private categoryServ: CategoryService) {
+    this.productsList = [];
   }
 
+  ngOnInit(): void {
+    this.getProductBySubcategory();
+  }
+  getProductBySubcategory() {
+    this.categoryServ.getProductsBySubcategory(this.subcategoryName).subscribe((response) => {
+      this.productsList = response;
+    })
+  }
 }

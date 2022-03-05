@@ -114,7 +114,7 @@ export class CarouselComponent implements OnInit {
   ]
   responsiveOptions;
 
-  constructor(private productService: ProductService) {
+  constructor() {
     this.responsiveOptions = [
       {
         breakpoint: '1024px',

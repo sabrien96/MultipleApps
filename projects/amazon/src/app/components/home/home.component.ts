@@ -14,12 +14,14 @@ export class HomeComponent implements OnInit {
 
   higherRatingList:IProduct[]=[];
   productsList: IProduct[] = [];
+  filterBy:string='';
+  filterMin:any;
+  filterMax:any;
   originalProductsFilter: IProduct[] = [];
   addedItem:boolean=false;
   loading: boolean;
   notFound: boolean = false;
   allCategories: any;
-  checkboxForm: FormGroup;
   page = 1;
   count = 0;
   tableSize = 20;
@@ -28,15 +30,11 @@ export class HomeComponent implements OnInit {
   sortFiled:string='';
   constructor(
     private productServe: ProductsService,
-    private caetgoryServ: CategoryService,
+    private categoryServ: CategoryService,
     private fb: FormBuilder,
     private localStorageServ:LocalStorageService
     ) {
 
-    this.checkboxForm = this.fb.group({
-      checkbox: '',
-      myChoices: new FormArray([]),
-    });
     this.loading = false;
 
   }
@@ -44,17 +42,11 @@ export class HomeComponent implements OnInit {
     this.getAllCategory();
     this.getAllProducts();
     this.fetchProduct();
-  // $(document).ready(function () {
-  //       $('.custom-select').each(function(){
-  //         $(this).children().first().attr("disabled","disabled");
-  //       })
-  //   });
   }
-
 
   //get all categories
   getAllCategory() {
-    this.caetgoryServ.getAllCategory().subscribe((data) => {
+    this.categoryServ.getAllCategory().subscribe((data) => {
       this.allCategories = data;
     });
   }
@@ -69,97 +61,9 @@ export class HomeComponent implements OnInit {
       })
     });
   }
-  //filter based on checkbox option
-  onCheckChange(event: any) {
-    const formArray: FormArray = this.checkboxForm.get('myChoices') as FormArray;
-    /* Selected */
-    if (event.target.checked) {
-      // Add a new control in the arrayForm
-      formArray.push(new FormControl(event.target.value));
-    } else {
-      /* unselected */
-      // find the unselected element
-      let i: number = 0;
-      formArray.controls.forEach((ctrl) => {
-        if (ctrl.value === event.target.value) {
-          // Remove the unselected element from the arrayForm
-          formArray.removeAt(i++);
-          return;
-        }
-        // i++;
-      });
-    }
-    if (formArray.value.length != 0) {
-      this.productsList = [];
-      formArray.value.map((item: string) => {
-        console.log('item:', item);
-        let checkName = this.checkCategoryFounded(item);
-        if (checkName !== 'not found') {
-          this.caetgoryServ.getProductByCategory(checkName).subscribe((data) => {
-            console.log('new data: ', data);
-            data.map((item) => {
-              this.productsList.push(item);
-              this.notFound = false;
-              // this.setPage(1);
-            });
-          });
-        }
-        else {
-          this.notFound = true;
-        }
-      });
-    }
-    else {
-      this.productsList = this.originalProductsFilter;
-      // this.setPage(1);
-      // this.productSize=this.productsList.length;
-    }
-  }
-
-  // filter by category name
-  checkCategoryFounded(search: string) {
-    let cateName;
-    let filterCategory = this.allCategories.filter((item: any) => {
-      return item.name.toString().toLowerCase().match(search.toString().toLowerCase());
-    });
-    if (filterCategory[0] != null) {
-      cateName = filterCategory[0]['name'].toLowerCase();
-      console.log(' original name ' + filterCategory[0]['name']);
-      console.log(' new cateName ' + cateName);
-      return cateName;
-    }
-    else {
-      console.log('Category name not found');
-      return 'not found';
-    }
-  }
-
-  // filter by price
-  filterPrice(priceLow: number, priceHigh: number, event: any) {
-    console.log('price click');
-    this.productsList = this.originalProductsFilter.filter((product) => {
-      return product.price >= priceLow && product.price < priceHigh;
-    })
-  }
-  // filter by discount
-  filterDiscount(discount: number) {
-    console.log('discount click');
-    this.productsList = this.originalProductsFilter.filter((product) => {
-      return product.discount >= discount;
-    })
-  }
-  // filter by rating
-  filterRating(rating: number) {
-    console.log('rating click');
-    this.productsList = this.originalProductsFilter.filter((product) => {
-      if (product.rating >= rating) {
-        console.log(product.rating);
-      }
-      return product.rating >= rating;
-    })
-  }
+ 
   fetchProduct(): void {
-    this.caetgoryServ.getAllProducts().subscribe(
+    this.categoryServ.getAllProducts().subscribe(
       response => {
         this.originalProductsFilter = response;
         // console.log(response);

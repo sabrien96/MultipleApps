@@ -1,0 +1,20 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-sm-3 bg-dark">
+      <nav class="navbar">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <h6><a class="nav-link active">{{categoryName|uppercase}}</a></h6>
+          </li>
+          <div class="dropdown-divider"></div>
+          <li class="nav-item" *ngFor="let subItem of subCategoryList">
+            <a class="nav-link" (click)="subcategoryName=subItem.name">{{subItem.name|titlecase}}</a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+    <div class="col-sm-9">
+      <app-products-list [subcategoryName]="subcategoryName"></app-products-list>
+    </div>
+  </div>
+</div>

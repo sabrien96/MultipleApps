@@ -1,1 +1,15 @@
-<p>products-list works!</p>
+<div class="container-fluid">
+  <div class="row m-3" *ngIf="subcategoryName!=''">
+    <div class="col-sm-6">
+      <p class="title p-2 text-center">{{subcategoryName|titlecase}}</p>
+    </div>
+  </div>
+  <div class="row">
+  </div>
+  <div class="row m-4 p-2">
+    <div class="col-sm-6 col-md-4" *ngFor="let product of productsList">
+      <app-main-card [product]="product"></app-main-card>
+    </div>
+  </div>
+ 
+</div>

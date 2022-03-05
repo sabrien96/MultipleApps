@@ -1,8 +1,117 @@
 <div class="container-fluid">
+  <!--first row ===> carousel -->
   <div class="row">
     <div class="col-sm-12">
       <app-carousel></app-carousel>
     </div>
   </div>
-  <div class="row"></div>
+  <!-- second row ===> Side bar to filter && show filtered products -->
+  <div class="row border border-left-0 border-right-0 border-bottom-0">
+    <div class="col-md-3">
+      <nav class="navbar bg-light">
+        <ul class="navbar-nav main-nav">
+          <li class="nav-item all">
+            <h6><a (click)="filterBy=''">All Deals </a></h6>
+          </li>
+          <!-- filter by price -->
+          <li class="nav-item">
+            <ul class="navbar-nav">
+              <li>
+                <h6>Price</h6>
+              </li>
+              <li class="nav-item"> <a class="nav-link" (click)="filterBy='price';filterMin=1;filterMax=400">Under
+                  EGP400</a> </li>
+              <li class="nav-item"> <a class="nav-link" (click)="filterBy='price';filterMin=400;filterMax=800">EGP400 to
+                  EGP800</a></li>
+              <li class="nav-item"> <a class="nav-link" (click)="filterBy='price';filterMin=800;filterMax=1200">EGP800
+                  to EGP1,200</a>
+              </li>
+              <li class="nav-item"> <a class="nav-link"
+                  (click)="filterBy='price';filterMin=1200;filterMax=1600">EGP1,200 to EGP1,600</a>
+              </li>
+              <li class="nav-item"> <a class="nav-link"
+                  (click)="filterBy='price';filterMin=1600;filterMax=null">EGP1,600 & above</a>
+              </li>
+            </ul>
+          </li>
+          <!-- filter by discount -->
+          <li class="nav-item">
+            <ul class="navbar-nav">
+              <div class="discount">
+                <h6>Discount</h6>
+              </div>
+              <li class="nav-item"> <a class="nav-link" (click)="filterBy='discount';filterMin='10'">10% off or more</a>
+              </li>
+              <li class="nav-item"> <a class="nav-link" (click)="filterBy='discount';filterMin='20'">20% off or more</a>
+              </li>
+              <li class="nav-item"> <a class="nav-link" (click)="filterBy='discount';filterMin='30'">30% off or more</a>
+              </li>
+              <li class="nav-item"> <a class="nav-link" (click)="filterBy='discount';filterMin='50'">50% off or more</a>
+              </li>
+
+            </ul>
+          </li>
+          <!-- filter by average -->
+          <li class="nav-item">
+            <ul class="navbar-nav average-nav">
+              <div class="average">
+                <h6>Average customer review</h6>
+              </div>
+              <li class="nav-item">
+                <app-rating [value]="4"></app-rating>
+                <a class="nav-link" (click)="filterBy='rating';filterMin='4'">& up</a>
+              </li>
+              <li class="nav-item">
+                <app-rating [value]="3"></app-rating>
+                <a class="nav-link" (click)="filterBy='rating';filterMin='3'">& up</a>
+              </li>
+              <li class="nav-item">
+                <app-rating [value]="2"></app-rating>
+                <a class="nav-link" (click)="filterBy='rating';filterMin='2'">& up</a>
+              </li>
+              <li class="nav-item">
+                <app-rating [value]="1"></app-rating>
+                <a class="nav-link" (click)="filterBy='rating';filterMin='1'">& up</a>
+              </li>
+              <li class="nav-item"></li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+    </div>
+    <!-- Show Products -->
+    <div class="col-md-9 col-sm-12">
+      <div class="container-fluid">
+        <div class="row sort-menu pt-3">
+          <div class="col-sm-3 ">
+            <div class="form-group ">
+              <select class="custom-select" (change)="sortBy($event)">
+                <option selected value="">
+                  Sort By
+                </option>
+                <option *ngFor="let field of sortArr">
+                  {{field}}
+                </option>
+              </select>
+              <!-- {{sortFiled}} -->
+            </div>
+
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-6 col-md-4" *ngFor="let product of productsList|sortBy:[sortFiled,'desc']">
+            <app-main-card [product]="product"></app-main-card>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- End show Product -->
+  </div>
+  <!--End row-->
+
+  <!-- first row ===> Show Popular Products -->
+  <div class="row p-4 border border-left-0 border-right-0  mt-3 mb-3 ">
+    <app-swipper [productList]="higherRatingList" [header]="'Popular Products'"></app-swipper>
+  </div>
+  <!-- End Popular -->
 </div>
